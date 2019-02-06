@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+<div class="ui center aligned grid" style="margin-top: 50px;">
+
+<a class="ui card" style="width: 50%;">
+    <div class="content">
+      <div class="header">{{blog.title}}</div>
+      <div class="meta">
+        <span class="category">{{blog.pub_date}}</span>
+      </div>
+      <div class="description">
+        <p>{{blog.body}}</p>
+      </div>
+    </div>
+</a>
+</div>
+{% endblock contents %}

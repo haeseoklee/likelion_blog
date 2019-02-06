@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block contents %}
+
+{% for blog in blogs.all %}
+<a class="centered ui card" href="{% url 'detail' blog.id %}" style="width: 50%;">
+    <div class="content">
+      <div class="header">{{blog.title}}</div>
+      <div class="meta">
+        <span class="category">{{blog.pub_date}}</span>
+      </div>
+      <div class="description">
+        <p>{{blog.summary}}</p>
+      </div>
+    </div>
+</a>
+{% endfor %}
+
+
+{% endblock contents %}

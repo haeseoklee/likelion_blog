@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contents %}
+
+<div class="ui two column centered grid">
+  <div class="ui stackable four column grid">
+    {% for portfolio in portfolios %}
+      <div class="column" style="width:24%;">
+        <div class="ui card">
+          <a class="image" href="#">
+            <img src="{{ portfolio.image.url }}">
+          </a>
+          <div class="content">
+            <a class="header" href="#">{{ portfolio.title }}</a>
+            <div class="meta">
+              <a>{{ portfolio.description }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock contents %}
+
+
+
+{% for group in portfolio_groups %}
+  <div class="stackable eight column centered row">
+    {% for portfolio in group %}
+      <div class="two column">
+        <div class="ui card">
+          <a class="image" href="#">
+            <img src="{{ portfolio.image.url }}">
+          </a>
+          <div class="content">
+            <a class="header" href="#">{{ portfolio.title }}</a>
+            <div class="meta">
+              <a>{{ portfolio.description }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endfor %}
