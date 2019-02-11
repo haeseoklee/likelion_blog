@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+<div class="ui center aligned grid">
+<div class="ui form" style="width: 50%;"> 
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="fluid ui secondary button" type="submit">글쓰기</button>
+    </form>
+</div>
+</div>
+{% endblock contents %}

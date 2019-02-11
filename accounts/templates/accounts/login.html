@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+
+<div class="ui four column centered grid">
+    <div class="column">
+        <form class="ui large form" method="POST" action="">
+            {% csrf_token %}
+            <div class="ui segment">
+            <div class="field">
+                <div class="ui left icon input">
+                <i class="user icon"></i>
+                {{ form.as_p }}
+                <input type="text" name="username" placeholder="유저네임">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                <i class="lock icon"></i>
+                <input type="password" name="password" placeholder="비밀번호">
+                </div>
+            </div>
+            <button class="fluid ui secondary button" type="submit">로그인</button>
+            </div>
+        </form>
+    </div>
+  </div>
+
+{% endblock contents %}

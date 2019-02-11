@@ -13,12 +13,25 @@ def detail(request, blog_id):
     blog = get_object_or_404(Blog, pk = blog_id)
     return render(request, 'blog/detail.html', {'blog' : blog, 'activate': 'blog'})
 
-class PostCreateView(CreateView):
+""" 
+def create(request):
+    blog = Blog()
+    blog.title = request.GET['title']
+    blog.body = request.GET['body']
+    blog.pub_date = timezone.datetime.now()
+    blog.save()
+    return redirect('/blog/' + str(blog.id))
+"""
+
+
+class BlogCreateView(CreateView):
     # template_name = 'blog/blog_form.html' # App이름_form.html 을 자동으로 찾아서 보여줌
+    # success_url = 'blog/' # 모델 자체에 get_absolute_url 함수가 있다면 이 함수 호출로 대신
     model = Blog
     form_class = BlogModelForm
+    template_name_suffix = '_create_form' # 기본으로 되어있는 _form 을 _creat_form 으로 바꿔줌 
 
     def get_context_data(self, **kwargs):
-        context = super(PostCreateView, self).get_context_data(**kwargs)
+        context = super(BlogCreateView, self).get_context_data(**kwargs)
         context['activate'] = 'create'
         return context
