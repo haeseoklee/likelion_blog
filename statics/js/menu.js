@@ -1,7 +1,8 @@
+/* 
 $(document).ready(function(){
-    $('.ui .segment .menu .item').on('click', function() {
-        $('.ui .segment .menu .item').removeClass('active');
+    $('div a').click(function(e) {
+        $('a').removeClass('active');
         $(this).addClass('active');
-        console.log($(this))
-    });              
+    });
 });
+ */
