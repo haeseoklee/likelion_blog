@@ -3,19 +3,32 @@
 
 {% block contents %}
 
-{% for blog in blogs.all %}
-<a class="centered ui card" href="{% url 'detail' blog.id %}" style="width: 50%;">
+{% for post in posts %}
+<a class="centered ui card" href="{% url 'detail' post.id %}" style="width: 50%;">
     <div class="content">
-      <div class="header">{{blog.title}}</div>
+      <div class="header">{{post.title}}</div>
       <div class="meta">
-        <span class="category">{{blog.pub_date}}</span>
+        <span class="category">{{post.pub_date}}</span>
       </div>
       <div class="description">
-        <p>{{blog.summary}}</p>
+        <p>{{post.summary}}</p>
       </div>
     </div>
 </a>
 {% endfor %}
 
+<div class="ui four column centered grid" style="margin-top:50px">
+{{posts.number}} of {{posts.paginator.num_pages}}
+</div>
 
+<div class="ui four column centered grid">
+<a href="?page=1">처음</a>|
+{% if posts.has_previous %}
+<a href="?page={{posts.previous_page_number}}">이전</a>|
+{% endif %}
+{% if posts.has_next %}
+<a href="?page={{posts.next_page_number}}">다음</a>|
+{% endif %}
+<a href="?page={{posts.paginator.num_pages}}">마지막</a>
+</div>
 {% endblock contents %}
