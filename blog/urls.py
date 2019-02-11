@@ -6,4 +6,5 @@ urlpatterns = [
     path('', views.blog, name="blog"),
     path('<int:blog_id>', views.detail, name="detail"),
     path('create', views.BlogCreateView.as_view(), name="create"),
+    # path('create', views.create2, name='create')
 ]

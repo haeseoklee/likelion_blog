@@ -1,7 +1,10 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
+from django.shortcuts import reverse
 from django.shortcuts import get_object_or_404
 from django.views.generic import CreateView
 from django.core.paginator import Paginator
+from django.utils.timezone import datetime
 
 from .models import Blog
 from .forms import BlogModelForm
@@ -19,16 +22,6 @@ def detail(request, blog_id):
     blog = get_object_or_404(Blog, pk = blog_id)
     return render(request, 'blog/detail.html', {'blog' : blog, 'activate': 'blog'})
 
-""" 
-def create(request):
-    blog = Blog()
-    blog.title = request.GET['title']
-    blog.body = request.GET['body']
-    blog.pub_date = timezone.datetime.now()
-    blog.save()
-    return redirect('/blog/' + str(blog.id))
-"""
-
 
 class BlogCreateView(CreateView):
     # # "App이름_form.html" 을 자동으로 찾아서 보여줌
@@ -37,7 +30,7 @@ class BlogCreateView(CreateView):
     # success_url = 'blog/' 
     model = Blog
     form_class = BlogModelForm
-    
+
     # 기본찾아오는 템플릿인 "App이름_form.html" 에서 _form 을 _creat_form 으로 바꿔줌 
     template_name_suffix = '_create_form' 
 
@@ -45,3 +38,30 @@ class BlogCreateView(CreateView):
         context = super(BlogCreateView, self).get_context_data(**kwargs)
         context['activate'] = 'create'
         return context
+
+        
+""" 
+def create(request):
+    blog = Blog()
+    blog.title = request.GET['title']
+    blog.body = request.GET['body']
+    blog.pub_date = datetime.now()
+    blog.save()
+    return redirect('/blog/' + str(blog.id))
+""" 
+""" 
+from django.http import HttpResponse, HttpResponseRedirect
+def create2(request):
+    if request.method == 'POST':
+        form = BlogModelForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.pub_date = datetime.now()
+            post.save()
+            print(post.id)
+            # return redirect(reverse('detail', kwargs={'blog_id': post.id}))
+            # return redirect('detail', post.id)
+            return redirect(post)
+    form = BlogModelForm()
+    return render(request, 'blog/blog_create_form.html', {'form': form })
+""" 
