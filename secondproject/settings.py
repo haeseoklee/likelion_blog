@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '8k#q=d8_sk3(h-%d1*^7@w0g2k7_u&
 # DEBUG = True
 DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['likelion-heroku.herokuapp.com']
 
 
 # Application definition
