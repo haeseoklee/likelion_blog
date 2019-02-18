@@ -9,7 +9,7 @@
       <div class="column" style="width:24%;">
         <div class="ui card">
           <a class="image" href="#">
-            <img src="{{ portfolio.image.url }}">
+            <img src="{{ portfolio.image_thumbnail.url }}">
           </a>
           <div class="content">
             <a class="header" href="#">{{ portfolio.title }}</a>
@@ -26,7 +26,7 @@
 {% endblock contents %}
 
 
-
+<!--
 {% for group in portfolio_groups %}
   <div class="stackable eight column centered row">
     {% for portfolio in group %}
@@ -46,3 +46,4 @@
     {% endfor %}
   </div>
 {% endfor %}
+-->

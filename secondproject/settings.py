@@ -51,6 +51,9 @@ INSTALLED_APPS = [
     # provider (google, facebook, kakao, naver....)
     'allauth.socialaccount.providers.google',
     # 'allauth.socialaccount.providers.facebook',
+
+    # pillow django-imagekit
+    'imagekit',
 ]
 
 MIDDLEWARE = [

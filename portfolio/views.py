@@ -12,8 +12,10 @@ def portfolio(request):
         portfolio_groups.append(temp)
         i += 4
         temp = portfolios[i:i+4]
-    return render(request, 'portfolio/portfolio.html', {
+    
+    portfolio_dic = {
         'portfolio_groups': portfolio_groups,
         'portfolios': portfolios,
         'activate': 'portfolio'
-        })
+        }
+    return render(request, 'portfolio/portfolio.html', portfolio_dic)
