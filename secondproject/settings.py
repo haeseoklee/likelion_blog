@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '8k#q=d8_sk3(h-%d1*^7@w0g2k7_u&
 # DEBUG = True
 DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
-ALLOWED_HOSTS = ['likelion-heroku.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'likelion-heroku.herokuapp.com']
 
 
 # Application definition
@@ -39,10 +39,18 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites', # django-allauth 를 위한 설정
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # provider (google, facebook, kakao, naver....)
+    'allauth.socialaccount.providers.google',
+    # 'allauth.socialaccount.providers.facebook',
 ]
 
 MIDDLEWARE = [
@@ -143,3 +151,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
+
+# allauth
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = '/blog'
+
+# allauth 기타설정
